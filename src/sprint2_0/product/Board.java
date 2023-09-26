@@ -1,4 +1,4 @@
-package sprint1_0.product;
+package sprint2_0.product;
 
 import javax.swing.*;
 import javax.swing.border.Border;
