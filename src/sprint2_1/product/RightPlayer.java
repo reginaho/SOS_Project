@@ -1,26 +1,27 @@
-package sprint2_0.product;
+package sprint2_1.product;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LeftPlayer extends JPanel {
-    GridLayout left_panel = new GridLayout(0,2);
+public class RightPlayer extends JPanel {
+
     JLabel playerLabel;
     JRadioButton r_button1;
     JRadioButton r_button2;
-    JCheckBox checkBox;
-    JRadioButton r_button3;
-    JRadioButton r_button4;
-    private SOSGame sosGame;
-    public LeftPlayer(SOSGame sosGame){
+    JTextField textField;
+    private JRadioButton r_button3;
+    private JRadioButton r_button4;
+    SOSGame sosGame;
+
+    public RightPlayer(SOSGame sosGame){
         this.sosGame = sosGame;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        playerLabel= new JLabel("Red Player");
+        playerLabel= new JLabel("Blue Player");
         playerLabel.setForeground(Color.WHITE);
-        playerLabel.setBackground(Color.RED);
+        playerLabel.setBackground(Color.BLUE);
         playerLabel.setOpaque(true);
 
         r_button1 = new JRadioButton("S");
@@ -31,7 +32,8 @@ public class LeftPlayer extends JPanel {
         r_button1.addActionListener(new InputListener1());
         r_button2.addActionListener(new InputListener2());
 
-        checkBox = new JCheckBox("Check Box");
+        textField = new JTextField();
+//        textField.addActionListener(new InputListener());
 
         ButtonGroup group = new ButtonGroup();
         group.add(r_button1);
@@ -47,29 +49,34 @@ public class LeftPlayer extends JPanel {
         add(r_button3);
         add(r_button4);
 
-//        add(checkBox);
+//        add(textField);
 
         r_button1.doClick(); //set default Radio button
-//setBackground(Color.RED);
     }
-    private class InputListener1 implements ActionListener {
-        private InputListener1() {
-        }
-        public void actionPerformed(ActionEvent e){
-            sosGame.updateLeftPlayer(SOSGame.Cell.S);
-//            if (sosGame.getTurn() % 2 == 1){
-//                sosGame.setCurrentMoveType(SOSGame.Cell.S);
-//            }
-        }
+//    public void
+private class InputListener1 implements ActionListener {
+    private InputListener1() {
     }
+    public void actionPerformed(ActionEvent e){
+//        if (sosGame.getTurn() % 2 == 0){
+//            sosGame.setCurrentMoveType(SOSGame.Cell.S);
+//            System.out.println("j");
+//        }
+        System.out.println("j");
+        sosGame.updateRightPlayer(SOSGame.Cell.S);
+    }
+}
     private class InputListener2 implements ActionListener {
         private InputListener2() {
         }
         public void actionPerformed(ActionEvent e) {
-            sosGame.updateLeftPlayer(SOSGame.Cell.O);
-//            if (sosGame.getTurn() % 2 == 1){
+//            if (sosGame.getTurn() % 2 == 0){
 //                sosGame.setCurrentMoveType(SOSGame.Cell.O);
+//                System.out.println("k");
 //            }
+            System.out.println("o");
+            sosGame.updateRightPlayer(SOSGame.Cell.O);
+            //Maybe I should have a seperate move state for both p1 and p2
         }
     }
 }
