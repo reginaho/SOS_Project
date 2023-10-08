@@ -1,6 +1,8 @@
 package sprint2_1.product;
 
 public class SOSGame {
+    public static int BOARD_SIZE_MIN = 3;
+    public static int BOARD_SIZE_MAX = 12;
     private int rowNum = 6;
     private int columnNum = 6;
 
@@ -21,32 +23,34 @@ public class SOSGame {
         SIMPLE_GAME, GENERAL_GAME
     }
     GameType gameType;
-
-//    public enum MoveType {
-//        S, O
-//    }
     Cell leftPlayerMoveType;
     Cell rightPlayerMoveType;
+    Boolean startIndicator = true;
 
 
     public SOSGame() {
         initGame(6,6);
+        startIndicator = false;
     }
 
-    public void initGame(int rowNum,int columnNum) {
-        this.rowNum = rowNum;
-        this.columnNum = columnNum;
-        grid = new Cell[rowNum][columnNum];
-        for (int row = 0; row < rowNum; ++row) {
-            for (int col = 0; col < columnNum; ++col) {
-                grid[row][col] = Cell.EMPTY;
+    public Boolean initGame(int rowNum,int columnNum) {
+        if(rowNum >= BOARD_SIZE_MIN && columnNum >= BOARD_SIZE_MIN && rowNum <= BOARD_SIZE_MAX && columnNum <= BOARD_SIZE_MAX) {
+            this.rowNum = rowNum;
+            this.columnNum = columnNum;
+            grid = new Cell[rowNum][columnNum];
+            for (int row = 0; row < rowNum; ++row) {
+                for (int col = 0; col < columnNum; ++col) {
+                    grid[row][col] = Cell.EMPTY;
+                }
             }
+            if(!startIndicator) {
+                currentGameState = GameState.PLAYING;
+            }
+            turn = 1;
+            return true;
         }
-        currentGameState = GameState.PLAYING;
-    }
-
-    public void resetGame() {
-//        initGame();
+        System.out.println("test9");
+        return false;
     }
 
     public int getTotalRows() {
@@ -58,11 +62,6 @@ public class SOSGame {
     }
 
     public Cell getCell(int row, int column) {
-//        if (row >= 0 && row < TOTALROWS && column >= 0 && column < TOTALCOLUMNS) {
-//            return grid[row][column];
-//        } else {
-//            return null;
-//        }
         return grid[row][column];
     }
 
@@ -74,27 +73,29 @@ public class SOSGame {
         this.gameType = gameType;
     }
 
-    public void makeMove(int row, int column) {
-        if (grid[row][column] == Cell.EMPTY) {
-            if (turn % 2 == 1) {
-                System.out.println("p");
-                grid[row][column] = leftPlayerMoveType;
-            } else if (turn % 2 == 0) {
-                System.out.println("k");
-                grid[row][column] = rightPlayerMoveType;
+    public GameType getGameType(){
+        return gameType;
+    }
+
+    public Boolean makeMove(int row, int column) {
+        if(currentGameState == GameState.PLAYING && rowNum >= BOARD_SIZE_MIN && columnNum >= BOARD_SIZE_MIN && rowNum <= BOARD_SIZE_MAX && columnNum <= BOARD_SIZE_MAX) {
+            if (grid[row][column] == Cell.EMPTY) {
+                if (turn % 2 == 1) {
+                    System.out.println("p");
+                    grid[row][column] = leftPlayerMoveType;
+                } else if (turn % 2 == 0) {
+                    System.out.println("k");
+                    grid[row][column] = rightPlayerMoveType;
+                }
+                turn++;
+                return true;
             }
-            turn++;
+            return false;
         }
-        System.out.println(turn);
+        return false;
     }
 
     private void updateGameState(char turn, int row, int column) {
-//        if (hasWon(turn, row, column)) { // check for win
-//            currentGameState = (turn == 'X') ? GameState.CROSS_WON : GameState.NOUGHT_WON;
-//        } else if (isDraw()) {
-//            currentGameState = GameState.DRAW;
-//        }
-        // Otherwise, no change to current state (still GameState.PLAYING).
     }
     public void updateLeftPlayer(Cell leftPlayerMoveType){
         this.leftPlayerMoveType = leftPlayerMoveType;
@@ -103,32 +104,4 @@ public class SOSGame {
     public void updateRightPlayer(Cell rightPlayerMoveType){
         this.rightPlayerMoveType = rightPlayerMoveType;
     }
-//
-//    private boolean isDraw() {
-//        for (int row = 0; row < TOTALROWS; ++row) {
-//            for (int col = 0; col < TOTALCOLUMNS; ++col) {
-//                if (grid[row][col] == Cell.EMPTY) {
-//                    return false; // an empty cell found, not draw
-//                }
-//            }
-//        }
-//        return true;
-//    }
-//
-//    private boolean hasWon(char turn, int row, int column) {
-//        Cell token = (turn == 'X') ? Cell.CROSS : Cell.NOUGHT;
-//        return (grid[row][0] == token // 3-in-the-row
-//                && grid[row][1] == token && grid[row][2] == token
-//                || grid[0][column] == token // 3-in-the-column
-//                && grid[1][column] == token && grid[2][column] == token
-//                || row == column // 3-in-the-diagonal
-//                && grid[0][0] == token && grid[1][1] == token && grid[2][2] == token
-//                || row + column == 2 // 3-in-the-opposite-diagonal
-//                && grid[0][2] == token && grid[1][1] == token && grid[2][0] == token);
-//    }
-//
-//    public GameState getGameState() {
-//        return currentGameState;
-//    }
-//
 }

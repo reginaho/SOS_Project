@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LeftPlayer extends JPanel {
-    GridLayout left_panel = new GridLayout(0,2);
     JLabel playerLabel;
     JRadioButton r_button1;
     JRadioButton r_button2;
@@ -47,19 +46,13 @@ public class LeftPlayer extends JPanel {
         add(r_button3);
         add(r_button4);
 
-//        add(checkBox);
-
-        r_button1.doClick(); //set default Radio button
-//setBackground(Color.RED);
+        r_button1.doClick();
     }
     private class InputListener1 implements ActionListener {
         private InputListener1() {
         }
         public void actionPerformed(ActionEvent e){
             sosGame.updateLeftPlayer(SOSGame.Cell.S);
-//            if (sosGame.getTurn() % 2 == 1){
-//                sosGame.setCurrentMoveType(SOSGame.Cell.S);
-//            }
         }
     }
     private class InputListener2 implements ActionListener {
@@ -67,9 +60,6 @@ public class LeftPlayer extends JPanel {
         }
         public void actionPerformed(ActionEvent e) {
             sosGame.updateLeftPlayer(SOSGame.Cell.O);
-//            if (sosGame.getTurn() % 2 == 1){
-//                sosGame.setCurrentMoveType(SOSGame.Cell.O);
-//            }
         }
     }
 }

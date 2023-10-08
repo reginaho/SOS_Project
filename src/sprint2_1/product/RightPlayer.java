@@ -33,7 +33,6 @@ public class RightPlayer extends JPanel {
         r_button2.addActionListener(new InputListener2());
 
         textField = new JTextField();
-//        textField.addActionListener(new InputListener());
 
         ButtonGroup group = new ButtonGroup();
         group.add(r_button1);
@@ -49,20 +48,12 @@ public class RightPlayer extends JPanel {
         add(r_button3);
         add(r_button4);
 
-//        add(textField);
-
-        r_button1.doClick(); //set default Radio button
+        r_button1.doClick();
     }
-//    public void
 private class InputListener1 implements ActionListener {
     private InputListener1() {
     }
     public void actionPerformed(ActionEvent e){
-//        if (sosGame.getTurn() % 2 == 0){
-//            sosGame.setCurrentMoveType(SOSGame.Cell.S);
-//            System.out.println("j");
-//        }
-        System.out.println("j");
         sosGame.updateRightPlayer(SOSGame.Cell.S);
     }
 }
@@ -70,13 +61,7 @@ private class InputListener1 implements ActionListener {
         private InputListener2() {
         }
         public void actionPerformed(ActionEvent e) {
-//            if (sosGame.getTurn() % 2 == 0){
-//                sosGame.setCurrentMoveType(SOSGame.Cell.O);
-//                System.out.println("k");
-//            }
-            System.out.println("o");
             sosGame.updateRightPlayer(SOSGame.Cell.O);
-            //Maybe I should have a seperate move state for both p1 and p2
         }
     }
 }

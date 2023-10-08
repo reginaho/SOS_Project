@@ -30,19 +30,14 @@ public class GUI extends JFrame {
         leftPlayer = new LeftPlayer(sosGame);
         rightPlayer = new RightPlayer(sosGame);
         topPanel= new TopPanel(sosGame);
-//        bottomPanel = new BottomPanel(this, board, sosGame);
 
         setLayout(new GridBagLayout());
 
-//        add(leftPlayer, BorderLayout.LINE_START);
-//        add(board, BorderLayout.CENTER);
-//        add(rightPlayer, BorderLayout.LINE_END);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 3;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.weighty = 0;
         add(topPanel, gbc);
         gbc.fill = GridBagConstraints.NONE;
         gbc.gridwidth = 1;
@@ -66,6 +61,7 @@ public class GUI extends JFrame {
     }
 
     public void setBoardSize(){
+        //check
         board.changeSize(topPanel.getBoardSize());
     }
 

@@ -18,7 +18,7 @@ public class BottomPanel extends JPanel {
         this.gui = gui;
         newGameButton = new JButton("Start");
         newGameButton.addActionListener(new InputListener());
-        turnLabel = new JLabel("");
+        turnLabel = new JLabel("Press Start");
 
 //        setBackground(Color.BLUE);
 
@@ -42,10 +42,10 @@ public class BottomPanel extends JPanel {
     }
 
     public void updateTurnLabel(){
-        if (sosGame.getTurn() % 2 == 1) {
-            turnLabel.setText("Turn: Left Player");
-        } else if (sosGame.getTurn() % 2 == 0) {
-            turnLabel.setText("Turn: Right Player");
+        if (sosGame.getTurn() % 2 == 0) {
+            turnLabel.setText("Turn: Blue Player");
+        } else if (sosGame.getTurn() % 2 == 1) {
+            turnLabel.setText("Turn: Red Player");
         }
         repaint();
     }
@@ -53,8 +53,8 @@ public class BottomPanel extends JPanel {
         private InputListener() {
         }
         public void actionPerformed(ActionEvent e){
-            System.out.println("help");
             gui.setBoardSize();
+            updateTurnLabel();
         }
     }
 }
