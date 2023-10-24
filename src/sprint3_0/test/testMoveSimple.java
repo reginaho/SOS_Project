@@ -6,7 +6,7 @@ import sprint2_1.product.SOSGame;
 
 import static org.junit.Assert.assertEquals;
 
-public class testMoveGeneral {
+public class testMoveSimple {
     private SOSGame sosGame;
 
     @Before
@@ -14,29 +14,29 @@ public class testMoveGeneral {
         int userInput = 9;
 
         sosGame = new SOSGame();
-        sosGame.updateGameType(SOSGame.GameType.GENERAL_GAME);
+        sosGame.updateGameType(SOSGame.GameType.SIMPLE_GAME);
         sosGame.initGame(userInput, userInput);
     }
 
-    //acceptance criteria 5.1
+    //acceptance criteria 4.1
     @Test
-    public void testGeneralMoveS() {
+    public void testSimpleMoveS() {
         sosGame.updateLeftPlayer(SOSGame.Cell.S);
         sosGame.makeMove(3,4);
         assertEquals(SOSGame.Cell.S, sosGame.getCell(3,4));
         assertEquals(0, sosGame.getTurn()%2);
     }
 
-    //acceptance criteria 5.2
+    //acceptance criteria 4.2
     @Test
-    public void testGeneralMoveO() {
+    public void testSimpleMoveO() {
         sosGame.updateLeftPlayer(SOSGame.Cell.O);
         sosGame.makeMove(3,4);
         assertEquals(SOSGame.Cell.O, sosGame.getCell(3,4));
         assertEquals(0, sosGame.getTurn()%2);
     }
 
-    //acceptance criteria 5.3
+    //acceptance criteria 4.3
     @Test
     public void testOccupiedCellMove() {
         sosGame.updateLeftPlayer(SOSGame.Cell.S);
