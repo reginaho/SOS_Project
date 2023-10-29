@@ -1,8 +1,9 @@
-package sprint2_1.test;
+package sprint3_0.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint2_1.product.SOSGame;
+import sprint3_0.product.SOSGame;
+import sprint3_0.product.SimpleGame;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +14,7 @@ public class testMoveSimple {
     public void setUp() throws Exception {
         int userInput = 9;
 
-        sosGame = new SOSGame();
-        sosGame.updateGameType(SOSGame.GameType.SIMPLE_GAME);
+        sosGame = new SimpleGame();
         sosGame.initGame(userInput, userInput);
     }
 

@@ -1,8 +1,9 @@
-package sprint2_1.test;
+package sprint3_0.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint2_1.product.SOSGame;
+import sprint3_0.product.GeneralGame;
+import sprint3_0.product.SOSGame;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,12 +14,11 @@ public class testMoveGeneral {
     public void setUp() throws Exception {
         int userInput = 9;
 
-        sosGame = new SOSGame();
-        sosGame.updateGameType(SOSGame.GameType.GENERAL_GAME);
+        sosGame = new GeneralGame();
         sosGame.initGame(userInput, userInput);
     }
 
-    //acceptance criteria 5.1
+    //acceptance criteria 6.1
     @Test
     public void testGeneralMoveS() {
         sosGame.updateLeftPlayer(SOSGame.Cell.S);
@@ -27,7 +27,7 @@ public class testMoveGeneral {
         assertEquals(0, sosGame.getTurn()%2);
     }
 
-    //acceptance criteria 5.2
+    //acceptance criteria 6.2
     @Test
     public void testGeneralMoveO() {
         sosGame.updateLeftPlayer(SOSGame.Cell.O);
@@ -36,7 +36,7 @@ public class testMoveGeneral {
         assertEquals(0, sosGame.getTurn()%2);
     }
 
-    //acceptance criteria 5.3
+    //acceptance criteria 6.3
     @Test
     public void testOccupiedCellMove() {
         sosGame.updateLeftPlayer(SOSGame.Cell.S);
@@ -45,5 +45,16 @@ public class testMoveGeneral {
         sosGame.makeMove(3,4);
         assertEquals(SOSGame.Cell.S, sosGame.getCell(3,4));
         assertEquals(0, sosGame.getTurn()%2);
+    }
+
+    //acceptance criteria 6.4
+    @Test
+    public void testOccupiedContinuedTurn() {
+        sosGame.updateLeftPlayer(SOSGame.Cell.S);
+        sosGame.updateRightPlayer(SOSGame.Cell.O);
+        sosGame.makeMove(3,4);
+        sosGame.makeMove(3,5);
+        sosGame.makeMove(3,6);
+        assertEquals(1, sosGame.getTurn()%2);
     }
 }

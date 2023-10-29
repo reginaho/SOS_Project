@@ -1,30 +1,28 @@
-package sprint2_1.test;
+package sprint3_0.test;
 
-import org.junit.Before;
 import org.junit.Test;
-import sprint2_1.product.SOSGame;
+import sprint3_0.product.GeneralGame;
+import sprint3_0.product.SOSGame;
+import sprint3_0.product.SimpleGame;
 
 import static org.junit.Assert.assertEquals;
 
 public class testGameType {
     private SOSGame sosGame;
-    @Before
-    public void setUp() throws Exception{
-        sosGame = new SOSGame();
-        sosGame.initGame(9, 9);
-    }
 
     //acceptance criteria 2.1
     @Test
     public void testSimpleGame() {
-        sosGame.updateGameType(SOSGame.GameType.SIMPLE_GAME);
+        sosGame = new SimpleGame();
+        sosGame.initGame(9, 9);
         assertEquals(SOSGame.GameType.SIMPLE_GAME, sosGame.getGameType());
     }
 
     //acceptance criteria 2.2
     @Test
     public void testGeneralGame() {
-        sosGame.updateGameType(SOSGame.GameType.GENERAL_GAME);
+        sosGame = new GeneralGame();
+        sosGame.initGame(9, 9);
         assertEquals(SOSGame.GameType.GENERAL_GAME, sosGame.getGameType());
     }
 }
