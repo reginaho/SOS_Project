@@ -1,4 +1,4 @@
-package sprint3_0.product;
+package sprint4_0.product;
 
 public class SimpleGame extends SOSGame {
     public SimpleGame(){
