@@ -1,6 +1,6 @@
 package sprint4_0.product;
 
-public class SimpleGame extends SOSGame {
+public abstract class SimpleGame extends SOSGame {
     public SimpleGame(){
         super();
         gameType = GameType.SIMPLE_GAME;

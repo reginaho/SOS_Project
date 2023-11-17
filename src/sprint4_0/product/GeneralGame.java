@@ -1,6 +1,6 @@
 package sprint4_0.product;
 
-public class GeneralGame extends SOSGame {
+public abstract class GeneralGame extends SOSGame {
     int redPlayerCombinations;
     int bluePlayerCombinations;
     public GeneralGame(){

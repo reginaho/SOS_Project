@@ -2,15 +2,16 @@ package sprint4_0.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint3_0.product.SimpleGame;
+import sprint4_0.product.SOSGame;
+import sprint4_0.product.SimpleComputerGame;
 
 import static org.junit.Assert.*;
 
 public class testBoardSize {
-    private SimpleGame sosGame;
+    private SOSGame sosGame;
     @Before
     public void setUp() throws Exception{
-        sosGame = new SimpleGame();
+        sosGame = new SimpleComputerGame();
     }
 
     //acceptance criteria 1.1

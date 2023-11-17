@@ -1,9 +1,7 @@
 package sprint4_0.test;
 
 import org.junit.Test;
-import sprint3_0.product.GeneralGame;
-import sprint3_0.product.SOSGame;
-import sprint3_0.product.SimpleGame;
+import sprint4_0.product.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +11,7 @@ public class testGameType {
     //acceptance criteria 2.1
     @Test
     public void testSimpleGame() {
-        sosGame = new SimpleGame();
+        sosGame = new SimpleComputerGame();
         sosGame.initGame(9, 9);
         assertEquals(SOSGame.GameType.SIMPLE_GAME, sosGame.getGameType());
     }
@@ -21,7 +19,7 @@ public class testGameType {
     //acceptance criteria 2.2
     @Test
     public void testGeneralGame() {
-        sosGame = new GeneralGame();
+        sosGame = new GeneralComputerGame();
         sosGame.initGame(9, 9);
         assertEquals(SOSGame.GameType.GENERAL_GAME, sosGame.getGameType());
     }

@@ -25,6 +25,11 @@ public abstract class SOSGame {
     public enum GameType {
         SIMPLE_GAME, GENERAL_GAME
     }
+    public enum PlayerType {
+        HUMAN_PLAYER, COMPUTER_PLAYER
+    }
+    protected PlayerType leftPlayerType;
+    protected PlayerType rightPlayerType;
     protected GameType gameType;
     protected Cell leftPlayerMoveType;
     protected Cell rightPlayerMoveType;
@@ -79,9 +84,21 @@ public abstract class SOSGame {
     public GameType getGameType(){
         return gameType;
     }
-
+    public PlayerType getLeftPlayerType(){
+        return leftPlayerType;
+    }
+    public PlayerType getRightPlayerType(){
+        return rightPlayerType;
+    }
+    public void setLeftPlayerType(PlayerType leftPlayerType){
+        this.leftPlayerType = leftPlayerType;
+    }
+    public void setRightPlayerType(PlayerType rightPlayerType){
+        this.rightPlayerType = rightPlayerType;
+    }
     public abstract Boolean makeMove(int row, int column);
-//    public abstract Boolean makeMove(int row, int column);
+    public abstract void makeMove();
+    //    public abstract Boolean makeMove(int row, int column);
     public int findCombination(int row, int column){
         boolean redTurn;
         boolean blueTurn;

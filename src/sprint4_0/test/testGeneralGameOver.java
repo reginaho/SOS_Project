@@ -2,8 +2,8 @@ package sprint4_0.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint3_0.product.GeneralGame;
-import sprint3_0.product.SOSGame;
+import sprint4_0.product.GeneralComputerGame;
+import sprint4_0.product.SOSGame;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +14,7 @@ public class testGeneralGameOver {
     public void setUp() throws Exception {
         int userInput = 3;
 
-        sosGame = new GeneralGame();
+        sosGame = new GeneralComputerGame();
         sosGame.initGame(userInput, userInput);
     }
 
