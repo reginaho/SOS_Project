@@ -82,17 +82,13 @@ public class GUI extends JFrame {
         sosGame.initGame(sosGame.getTotalRows(), sosGame.getTotalRows());
         setBoardSize();
         ComputerMove();
-//        bottomPanel.updateTurnLabel();
     }
     public void ComputerMove(){
-        System.out.println(sosGame.getTurn());
         if(sosGame.getGameState() == SOSGame.GameState.PLAYING) {
             if ((sosGame.getTurn() % 2 == 1) && sosGame.getLeftPlayerType() == SOSGame.PlayerType.COMPUTER_PLAYER) {
                 sosGame.makeMove();
-                System.out.println("09");
                 ComputerMove();
             } else if ((sosGame.getTurn() % 2 == 0) && sosGame.getRightPlayerType() == SOSGame.PlayerType.COMPUTER_PLAYER) {
-                System.out.println("08");
                 sosGame.makeMove();
                 ComputerMove();
             }
@@ -101,11 +97,6 @@ public class GUI extends JFrame {
 //            bottomPanel.updateTurnLabel();
         }
     }
-/*    public void BlueComputerMove(){
-        if(sosGame.getLeftPlayerType() == SOSGame.PlayerType.COMPUTER_PLAYER){
-            sosGame.makeMove();
-        }
-    }*/
     public void setInstance(){
         bottomPanel.setInstance(sosGame);
         board.setInstance(sosGame);
@@ -264,7 +255,6 @@ public class GUI extends JFrame {
             private InputListener3() {
             }
             public void actionPerformed(ActionEvent e){
-                System.out.println("help 83");
                 sosGame.setRightPlayerType(SOSGame.PlayerType.HUMAN_PLAYER);
             }
         }
@@ -272,7 +262,6 @@ public class GUI extends JFrame {
             private InputListener4() {
             }
             public void actionPerformed(ActionEvent e) {
-                System.out.println("help 82");
                 sosGame.setRightPlayerType(SOSGame.PlayerType.COMPUTER_PLAYER);
             }
         }
@@ -375,17 +364,13 @@ public class GUI extends JFrame {
             int rowSelected = y / cellPixelSize;
             int colSelected = x / cellPixelSize;
             sosGame.makeMove(rowSelected,colSelected);
-            //help32
             if (sosGame.getTurn() % 2 == 0 && sosGame.getRightPlayerType() == SOSGame.PlayerType.COMPUTER_PLAYER) {
-                System.out.println("right test");
-                bottomPanel.updateTurnLabel();
                 sosGame.makeMove();
             } else if (sosGame.getTurn() % 2 == 1 && sosGame.getLeftPlayerType() == SOSGame.PlayerType.COMPUTER_PLAYER) {
-                System.out.println("right test");
-                bottomPanel.updateTurnLabel();
                 sosGame.makeMove();
             }
             gui.ComputerMove();
+            bottomPanel.updateTurnLabel();
             repaint();
         }
         public void setInstance(SOSGame sosGame){
@@ -493,7 +478,6 @@ public class GUI extends JFrame {
         }
 
         public void updateTurnLabel(){
-            System.out.println("help 48");
             if (sosGame.getGameState() == SOSGame.GameState.BLUE_WON) {
                 turnLabel.setText("Blue player won - press \"Start\" to play again");
                 JOptionPane.showMessageDialog(null, "Blue player won - press \"Start\" to play again");

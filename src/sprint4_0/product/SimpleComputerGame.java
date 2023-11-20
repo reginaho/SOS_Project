@@ -14,16 +14,14 @@ public class SimpleComputerGame extends SimpleGame{
         rightPlayerType = rightType;
     }
     @Override
-    public void makeMove() {
-        //sos move
+    public Boolean makeMove() {
         if(!SOSMove()){
-            randomMove();;
+            randomMove();
         }
-        //block?
-        //random
+        return true;
     }
 
-    public void randomMove(){
+    public Boolean randomMove(){
         Random ran = new Random();
         int boardSize = rowNum * rowNum;
         int nxt = ran.nextInt(1,3);
@@ -39,8 +37,7 @@ public class SimpleComputerGame extends SimpleGame{
                 } else if (getTurn() % 2 == 1) {
                     leftPlayerMoveType = ranCell;
                 }
-                makeMove(row, col);
-                break;
+                return makeMove(row, col);
             }
 
             startLocation++;
@@ -48,15 +45,13 @@ public class SimpleComputerGame extends SimpleGame{
                 startLocation = 0;
             }
         }
+        return false;
     }
     public boolean SOSMove(){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
-                System.out.println("hjj");
                 if(grid[i][j] == Cell.EMPTY){
-                    System.out.println("hy");
                     if(CheckO(i,j)){
-                        System.out.println("hj");
                         if (getTurn() % 2 == 0) {
                             rightPlayerMoveType = Cell.O;
                         } else if (getTurn() % 2 == 1) {
@@ -78,7 +73,6 @@ public class SimpleComputerGame extends SimpleGame{
         return false;
     }
     public boolean CheckO(int row, int column){
-        System.out.println("nm");
         try {
             if (checkMove(row - 1, column) && checkMove(row + 1, column)) {
                 if (grid[row - 1][column] == Cell.S && grid[row + 1][column] == Cell.S) {

@@ -97,7 +97,7 @@ public abstract class SOSGame {
         this.rightPlayerType = rightPlayerType;
     }
     public abstract Boolean makeMove(int row, int column);
-    public abstract void makeMove();
+    public abstract Boolean makeMove();
     //    public abstract Boolean makeMove(int row, int column);
     public int findCombination(int row, int column){
         boolean redTurn;
