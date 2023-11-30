@@ -31,6 +31,7 @@ public class GUI extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
 
         sosGame = new SimpleComputerGame();
+        sosGame.setRecordingMode(false);
         bottomPanel = new BottomPanel(this, sosGame);
         board = new Board(sosGame, bottomPanel, this);
         leftPlayer = new LeftPlayer(sosGame);
@@ -71,15 +72,32 @@ public class GUI extends JFrame {
     }
     //board object changes here
     public void resetBoard(){
-        if(sosGame.getGameType() == SOSGame.GameType.SIMPLE_GAME) {
-            sosGame = new SimpleComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(), sosGame.getLeftPlayerType(), sosGame.getRightPlayerType());
+        if(sosGame.getRecordingMode()){
+            System.out.println("help 97");
         }
         else{
-            sosGame = new GeneralComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(),sosGame.getLeftPlayerType(), sosGame.getRightPlayerType());
+            System.out.println("help 98");
         }
-
+        if(sosGame.getGameType() == SOSGame.GameType.SIMPLE_GAME) {
+            sosGame = new SimpleComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(), sosGame.getLeftPlayerType(), sosGame.getRightPlayerType(), sosGame.getRecordingMode());
+        }
+        else{
+            sosGame = new GeneralComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(),sosGame.getLeftPlayerType(), sosGame.getRightPlayerType(), sosGame.getRecordingMode());
+        }
+        if(sosGame.getRecordingMode()){
+            System.out.println("help 97");
+        }
+        else{
+            System.out.println("help 98");
+        }
         setInstance();
         sosGame.initGame(sosGame.getTotalRows(), sosGame.getTotalRows());
+        if(sosGame.getRecordingMode()){
+            System.out.println("help 97");
+        }
+        else{
+            System.out.println("help 98");
+        }
         setBoardSize();
         ComputerMove();
     }
@@ -448,6 +466,7 @@ public class GUI extends JFrame {
     public class BottomPanel extends JPanel {
         JButton newGameButton;
         JLabel turnLabel;
+        JCheckBox checkBox;
         private Board board;
         GUI gui;
         SOSGame sosGame;
@@ -459,12 +478,15 @@ public class GUI extends JFrame {
             newGameButton = new JButton("Start");
             newGameButton.addActionListener(new InputListener());
             turnLabel = new JLabel("Press Start");
+            checkBox = new JCheckBox("record");
+            checkBox.addActionListener(new CheckBoxListener());
 
             setLayout(new GridBagLayout());
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.weightx = 1;
-            add(new Panel(), gbc);
+            add(checkBox, gbc);
+            checkBox.setSelected(false);
 
             gbc.gridx = 1;
             gbc.weightx = 0;
@@ -496,6 +518,13 @@ public class GUI extends JFrame {
                 turnLabel.setText("Turn: Red Player");
             }
             repaint();
+        }
+        private class CheckBoxListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                AbstractButton abstractButton = (AbstractButton) e.getSource();
+                boolean recording = abstractButton.getModel().isSelected();
+                sosGame.setRecordingMode(recording);
+            }
         }
         private class InputListener implements ActionListener {
             private InputListener() {

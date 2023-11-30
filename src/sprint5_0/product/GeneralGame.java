@@ -19,6 +19,8 @@ public abstract class GeneralGame extends SOSGame {
     }
     public Boolean makeMove(int row, int column){
         if(currentGameState == GameState.PLAYING && rowNum >= BOARD_SIZE_MIN && columnNum >= BOARD_SIZE_MIN && rowNum <= BOARD_SIZE_MAX && columnNum <= BOARD_SIZE_MAX) {
+            System.out.println("help3");
+            RecordMoveToFile(row, column);
             if (grid[row][column] == Cell.EMPTY) {
                 int combinationNum;
                 if (turn % 2 == 1) {
@@ -52,6 +54,8 @@ public abstract class GeneralGame extends SOSGame {
                     else{
                         currentGameState = GameState.BLUE_WON;
                     }
+                    System.out.println("help23");
+                    closeGameFile();
                 }
                 return true;
             }

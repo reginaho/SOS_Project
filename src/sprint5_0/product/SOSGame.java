@@ -1,6 +1,11 @@
 package sprint5_0.product;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.Date;
 
 public abstract class SOSGame {
     public static int BOARD_SIZE_MIN = 3;
@@ -34,8 +39,11 @@ public abstract class SOSGame {
     protected Cell leftPlayerMoveType;
     protected Cell rightPlayerMoveType;
     protected Boolean startIndicator = true;
-
+    protected Boolean recordingIndicator = true;
+    protected FileWriter fileWriter;
+    private File fileRecording;
     public SOSGame() {
+        recordingIndicator = false;
         initGame(6,6);
         startIndicator = false;
     }
@@ -56,6 +64,9 @@ public abstract class SOSGame {
             }
             turn = 1;
             totalPlaced = 0;
+            if(recordingIndicator){
+                createFile();
+            }
             return true;
         }
         return false;
@@ -98,6 +109,56 @@ public abstract class SOSGame {
     }
     public abstract Boolean makeMove(int row, int column);
     public abstract Boolean makeMove();
+    public void createFile(){
+        if(recordingIndicator) {
+            System.out.println("test 86");
+                SimpleDateFormat dateInput = new SimpleDateFormat("yyyyMMddHHmmss");
+            String gameFile = "gameData-" + dateInput.format(new Date()) + ".txt";
+            try {
+                fileRecording = new File(gameFile);
+                fileRecording.createNewFile();
+                fileWriter = new FileWriter(gameFile);
+                fileWriter.write("Game Type: " + gameType + "\n" +
+                        "Blue Player Mode: " + leftPlayerType + "\nRed Player Mode: " + rightPlayerType + "\n" +
+                        "Board Size: " + rowNum + "\n");
+            } catch (IOException ignored) {
+            }
+        }
+    }
+    public void closeGameFile(){
+            if (recordingIndicator) {
+                try {
+                    if(currentGameState == GameState.BLUE_WON){
+                        fileWriter.write("Blue won");
+                    }
+                    else if(currentGameState == GameState.RED_WON){
+                        fileWriter.write("Red won");
+                    }
+                    else if(currentGameState == GameState.DRAW){
+                        fileWriter.write("Draw");
+                    }
+                    System.out.println("help64");
+                    fileWriter.close();
+                    System.out.println("help63");
+                } catch (IOException ignored) {
+                    System.out.println("close error");
+                }
+            }
+    }
+    protected void RecordMoveToFile(int row, int col){
+        if(recordingIndicator) {
+            try {
+                System.out.println("help4");
+                if (turn % 2 == 0) {
+                    fileWriter.write(rightPlayerMoveType + " (" + row + ", " + col + ")\n");
+                } else {
+                    fileWriter.write(leftPlayerMoveType + " (" + row + ", " + col + ")\n");
+                }
+            } catch (IOException ignored) {
+                System.out.println("write error");
+            }
+        }
+    }
     //    public abstract Boolean makeMove(int row, int column);
     public int findCombination(int row, int column){
         boolean redTurn;
@@ -240,7 +301,12 @@ public abstract class SOSGame {
     public Cell getLeftPlayer(){
         return leftPlayerMoveType;
     }
-
+    public void setRecordingMode(boolean recordingOption){
+            recordingIndicator = recordingOption;
+    }
+    public Boolean getRecordingMode(){
+        return recordingIndicator;
+    }
     public Cell getRightPlayer(){
         return rightPlayerMoveType;
     }

@@ -8,10 +8,11 @@ public class SimpleComputerGame extends SimpleGame{
         leftPlayerType = PlayerType.HUMAN_PLAYER;
         rightPlayerType = PlayerType.HUMAN_PLAYER;
     }
-    public SimpleComputerGame(Cell leftPlayerMoveType, Cell rightPlayerMoveType, PlayerType leftType, PlayerType rightType){
+    public SimpleComputerGame(Cell leftPlayerMoveType, Cell rightPlayerMoveType, PlayerType leftType, PlayerType rightType, Boolean recordingIndicator){
         super(leftPlayerMoveType,rightPlayerMoveType);
         leftPlayerType = leftType;
         rightPlayerType = rightType;
+        this.recordingIndicator = recordingIndicator;
     }
     @Override
     public Boolean makeMove() {
