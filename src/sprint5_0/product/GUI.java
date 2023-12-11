@@ -72,32 +72,15 @@ public class GUI extends JFrame {
     }
     //board object changes here
     public void resetBoard(){
-        if(sosGame.getRecordingMode()){
-            System.out.println("help 97");
-        }
-        else{
-            System.out.println("help 98");
-        }
+
         if(sosGame.getGameType() == SOSGame.GameType.SIMPLE_GAME) {
             sosGame = new SimpleComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(), sosGame.getLeftPlayerType(), sosGame.getRightPlayerType(), sosGame.getRecordingMode());
         }
         else{
             sosGame = new GeneralComputerGame(sosGame.getLeftPlayer(), sosGame.getRightPlayer(),sosGame.getLeftPlayerType(), sosGame.getRightPlayerType(), sosGame.getRecordingMode());
         }
-        if(sosGame.getRecordingMode()){
-            System.out.println("help 97");
-        }
-        else{
-            System.out.println("help 98");
-        }
         setInstance();
         sosGame.initGame(sosGame.getTotalRows(), sosGame.getTotalRows());
-        if(sosGame.getRecordingMode()){
-            System.out.println("help 97");
-        }
-        else{
-            System.out.println("help 98");
-        }
         setBoardSize();
         ComputerMove();
     }
@@ -314,8 +297,8 @@ public class GUI extends JFrame {
         }
 
         public void changeSize(int sizeInput){
-            Boolean sizeVarification = sosGame.initGame(sizeInput, sizeInput);
-            if (sizeVarification) {
+            Boolean sizeVerification = sosGame.initGame(sizeInput, sizeInput);
+            if (sizeVerification) {
                 cellNum = sizeInput;
                 cellPixelSize = boardSize / cellNum;
                 int newSize = cellPixelSize * cellNum;

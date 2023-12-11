@@ -18,14 +18,14 @@ public class GeneralComputerGame extends GeneralGame{
     public Boolean makeMove() {
         //sos move
         if(!SOSMove()){
-            randomMove();
+            RandomMove();
         }
         return true;
         //block?
         //random
     }
 
-    public Boolean randomMove(){
+    public Boolean RandomMove(){
         Random ran = new Random();
         int boardSize = rowNum * rowNum;
         int nxt = ran.nextInt(1,3);

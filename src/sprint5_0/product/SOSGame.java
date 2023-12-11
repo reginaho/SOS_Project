@@ -111,8 +111,7 @@ public abstract class SOSGame {
     public abstract Boolean makeMove();
     public void createFile(){
         if(recordingIndicator) {
-            System.out.println("test 86");
-                SimpleDateFormat dateInput = new SimpleDateFormat("yyyyMMddHHmmss");
+            SimpleDateFormat dateInput = new SimpleDateFormat("yyyyMMddHHmmss");
             String gameFile = "gameData-" + dateInput.format(new Date()) + ".txt";
             try {
                 fileRecording = new File(gameFile);
@@ -137,9 +136,7 @@ public abstract class SOSGame {
                     else if(currentGameState == GameState.DRAW){
                         fileWriter.write("Draw");
                     }
-                    System.out.println("help64");
                     fileWriter.close();
-                    System.out.println("help63");
                 } catch (IOException ignored) {
                     System.out.println("close error");
                 }
@@ -148,7 +145,6 @@ public abstract class SOSGame {
     protected void RecordMoveToFile(int row, int col){
         if(recordingIndicator) {
             try {
-                System.out.println("help4");
                 if (turn % 2 == 0) {
                     fileWriter.write(rightPlayerMoveType + " (" + row + ", " + col + ")\n");
                 } else {
